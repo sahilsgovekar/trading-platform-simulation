@@ -166,6 +166,26 @@ def fetch_latest_news():
     else:
         return [{"title": "Error", "description": "Failed to fetch news", "link": ""}]
 
+@app.route('/portfolio')
+@login_required
+def portfolio():
+    transactions = StockTransaction.query.filter_by(user_id=current_user.id).all()
+    portfolio = {}
+    
+    for transaction in transactions:
+        if transaction.stock_symbol not in portfolio:
+            portfolio[transaction.stock_symbol] = {'quantity': 0, 'total_value': 0}
+        
+        if transaction.transaction_type == 'BUY':
+            portfolio[transaction.stock_symbol]['quantity'] += transaction.quantity
+            portfolio[transaction.stock_symbol]['total_value'] += transaction.price * transaction.quantity
+        elif transaction.transaction_type == 'SELL':
+            portfolio[transaction.stock_symbol]['quantity'] -= transaction.quantity
+            portfolio[transaction.stock_symbol]['total_value'] -= transaction.price * transaction.quantity
+
+    total_portfolio_value = sum(stock['total_value'] for stock in portfolio.values())
+    return render_template('portfolio.html', portfolio=portfolio, total_portfolio_value=total_portfolio_value)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

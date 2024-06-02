@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>My Portfolio</h1>
+<table border="1">
+    <tr>
+        <th>Stock Symbol</th>
+        <th>Quantity</th>
+        <th>Total Value</th>
+    </tr>
+    {% for symbol, data in portfolio.items() %}
+    <tr>
+        <td>{{ symbol }}</td>
+        <td>{{ data.quantity }}</td>
+        <td>${{ data.total_value }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p>Total Portfolio Value: ${{ total_portfolio_value }}</p>
+<a href="{{ url_for('home') }}">Back to Home</a>
+{% endblock %}
