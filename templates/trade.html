@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Check Stock Price</h1>
+<form action="/get_stock_price" method="post">
+    <label for="symbol">Stock Symbol:</label>
+    <select id="symbol" name="symbol" style="width: 200px;">
+        {% for symbol in symbols %}
+            <option value="{{ symbol }}">{{ symbol }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Get Price</button>
+</form>
+
+<script>
+    $(document).ready(function() {
+        $('#symbol').select2({
+            placeholder: 'Select a stock symbol',
+            allowClear: true
+        });
+    });
+</script>
+{% endblock %}

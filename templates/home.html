@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to the Flask Trading App</h1>
+    <ul>
+        <li><a href="/news">Latest News</a></li>
+        <li><a href="/trade" onclick="executeTrade()">Simulate Trade</a></li>
+    </ul>
+    <script>
+        function executeTrade() {
+            fetch('/trade', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => alert(JSON.stringify(data)));
+        }
+    </script>
+</body>
+</html>

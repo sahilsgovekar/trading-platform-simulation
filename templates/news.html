@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Latest News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .news-item {
+            margin-bottom: 20px;
+        }
+        .news-title {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .news-link {
+            text-decoration: none;
+            color: #1a0dab;
+        }
+        .news-description {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Latest News</h1>
+    <div id="news-container">
+        {% if news_data %}
+            {% for item in news_data %}
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="{{ item.link }}" class="news-link" target="_blank">{{ item.title }}</a>
+                    </div>
+                    <div class="news-description">
+                        {{ item.description }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No news available at the moment.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
