@@ -50,8 +50,8 @@ def signup():
         user = User(username=username, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Account created successfully!', 'success')
-        return redirect(url_for('login'))
+        flash('Account created successfully! Login please', 'success')
+        return redirect(url_for('trade'))
     return render_template('signup.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -63,7 +63,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
             flash('Login successful!', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('trade'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html')
@@ -94,7 +94,7 @@ STOCK_SYMBOLS = [
 ]
 
 @app.route('/trade')
-def index():
+def trade():
     return render_template('trade.html', symbols=STOCK_SYMBOLS)
 
 @app.route('/get_stock_price', methods=['POST'])
@@ -165,6 +165,10 @@ def fetch_latest_news():
             return [{"title": "Error", "description": str(e), "link": ""}]
     else:
         return [{"title": "Error", "description": "Failed to fetch news", "link": ""}]
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 @app.route('/portfolio')
 @login_required
