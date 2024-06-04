@@ -185,6 +185,11 @@
         {% endif %}
 
         <a href="{{ url_for('trade') }}">Check another stock</a>
+        <form action="/predict" method="post">
+            <input type="hidden" name="symbol" value="{{ symbol }}">
+            <button type="submit">Predict</button>
+        </form>
+        
     </div>
 </body>
 </html>

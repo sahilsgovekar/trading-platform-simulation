@@ -209,6 +209,12 @@ def index():
     gainers, losers = get_market_data()
     return render_template('markettrends.html', gainers=gainers, losers=losers)
 
+@app.route('/predict', methods=['POST'])
+@login_required
+def predict():
+    stock_symbol = request.form['symbol']
+    return redirect(f'http://localhost:8501/?stock_symbol={stock_symbol}')
+
 
 #Admin panel
 @app.route('/admin_login', methods=['GET', 'POST'])

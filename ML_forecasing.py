@@ -26,11 +26,20 @@ st.title('Stock Forecast App 💎')
 st.write('This application allows you to generate predictions of the price of stocks of the most important companies. .')
 #st.markdown("""The library used for forecasting is(https://facebook.github.io/prophet/).""")
 
-stocks = ('GOOG', 'AAPL', 'MSFT', 'TSLA','FB','AMZN','BTC-USD','ETH-USD')
-selected_stock = st.selectbox('Select dataset for prediction', stocks)
+# stocks = ('GOOG', 'AAPL', 'MSFT', 'TSLA','FB','AMZN','BTC-USD','ETH-USD')
+# selected_stock = st.selectbox('Select dataset for prediction', stocks)
+
+# Get the query parameters from the URL
+query_params = st.experimental_get_query_params()
+
+# Extract the stock_symbol from the query parameters
+selected_stock = query_params.get("stock_symbol", [""])[0]
+
+st.title(selected_stock)
 
 n_years = st.slider('Years of prediction:', 1, 4)
 period = n_years* 365
+
 
 
 @st.cache_data
