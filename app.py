@@ -6,6 +6,7 @@ import requests
 import sqlite3
 import xmltodict
 import yfinance as yf
+from yahoo_fin import stock_info as si
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///trading.db'
@@ -14,6 +15,8 @@ app.config['SECRET_KEY'] = 'ohyesabhi'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 bcrypt = Bcrypt(app)
+
+API_KEY = "60QRNJTI1KSF8EQ8"
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -189,6 +192,25 @@ def portfolio():
 
     total_portfolio_value = sum(stock['total_value'] for stock in portfolio.values())
     return render_template('portfolio.html', portfolio=portfolio, total_portfolio_value=total_portfolio_value)
+
+def get_market_data():
+    gainers = si.get_day_gainers()
+    losers = si.get_day_losers()
+
+    # Inspecting the first row of gainers and losers to understand the data structure
+    print("Gainers Data Example:", gainers.head(1).to_dict('records'))
+    print("Losers Data Example:", losers.head(1).to_dict('records'))
+
+    top_gainers = gainers.head(5).to_dict('records')
+    top_losers = losers.head(5).to_dict('records')
+
+    return top_gainers, top_losers
+
+@app.route('/market/trends')
+def index():
+    gainers, losers = get_market_data()
+    return render_template('markettrends.html', gainers=gainers, losers=losers)
+
 
 
 if __name__ == '__main__':
