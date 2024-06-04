@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: gilroy, sans-serif;
+            color: #fff;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            background-color: #111;
+        }
+
+        nav {
+            position: fixed;
+            display: flex;
+            align-items: flex-start;
+            height: 12vh;
+            width: 100%;
+            padding: 2vw 10.4vw;
+            justify-content: space-between;
+            background-color: #111;
+            z-index: 10;
+        }
+
+        nav h1 {
+            font-size: 1.6vw;
+        }
+
+        .nav-part2 {
+            display: flex;
+            gap: 2vw;
+            align-items: flex-start;
+            padding: 1vh 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-elem h4 a {
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-part2 h4 {
+            font-size: 0.73vw;
+            margin-bottom: 2.6vw;
+        }
+
+        nav button {
+            background-color: #0BA34E;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            font-size: 0.85vw;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+        }
+
+        #nav-bottom {
+            width: 100%;
+            height: 1vh;
+            position: absolute;
+            top: 100%;
+            background-color: #111;
+            z-index: 9;
+            border-bottom: 1px solid #fff;
+        }
+
+        .container {
+            padding: 15vh 10vw;
+            background-color: #111;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #fff;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .gainer {
+            color: #0BA34E; /* Green for gainers */
+        }
+
+        .loser {
+            color: #FF0000; /* Red for losers */
+        }
+
+        .actions a {
+            margin-right: 10px;
+            color: #0BA34E; /* Green for actions */
+        }
+
+        .actions a:hover {
+            color: #4f5bff;
+        }
+
+        .delete-link {
+            color: #FF0000; /* Red for delete */
+        }
+
+        .delete-link:hover {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1></h1>
+        <div class="nav-part2">
+            <div class="logo" id="logo"> 
+                <h3>Future Flare</h3>
+            </div>
+            <div class="nav-elem">
+                <h4><a href="/">Home</a></h4>
+            </div>
+            <div class="nav-elem">
+                <h4><a href="/news" id="newss">News</a></h4>
+            </div>
+            <div class="nav-elem">
+                <h4><a href="/about">About Agency</a></h4>
+            </div>
+            <div class="nav-elem">
+                <h4><a href="/market/trends">MarketTrends</a></h4>
+            </div>
+        </div>
+        <a href="/login" id="login-page"><button id="btn">Sign-up/Login</button></a>
+        <div id="nav-bottom"></div>
+    </nav>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <table border="1">
+            <tr>
+                <th>Username</th>
+                <th>Funds</th>
+                <th>Actions</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>${{ user.funds }}</td>
+                <td class="actions">
+                    <a href="{{ url_for('admin_view_portfolio', user_id=user.id) }}">View Portfolio</a>
+                    <a href="{{ url_for('delete_user', user_id=user.id) }}" onclick="return confirm('Are you sure you want to delete this user?');" class="delete-link">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ url_for('admin_logout') }}">Logout</a>
+    </div>
+</body>
+</html>

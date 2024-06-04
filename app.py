@@ -16,8 +16,6 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 bcrypt = Bcrypt(app)
 
-API_KEY = "60QRNJTI1KSF8EQ8"
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -210,6 +208,69 @@ def get_market_data():
 def index():
     gainers, losers = get_market_data()
     return render_template('markettrends.html', gainers=gainers, losers=losers)
+
+
+#Admin panel
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if username == 'admin' and password == 'admin@123':
+            session['admin_logged_in'] = True
+            flash('Admin login successful!', 'success')
+            return redirect(url_for('admin'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+    return render_template('admin_login.html')
+
+@app.route('/admin_logout')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    flash('Admin has been logged out.', 'info')
+    return redirect(url_for('admin_login'))
+
+@app.route('/admin')
+def admin():
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    
+    users = User.query.all()
+    return render_template('admin.html', users=users)
+
+@app.route('/admin/delete_user/<int:user_id>')
+def delete_user(user_id):
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('User deleted successfully!', 'success')
+    return redirect(url_for('admin'))
+
+@app.route('/admin/view_portfolio/<int:user_id>')
+def admin_view_portfolio(user_id):
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    
+    user = User.query.get_or_404(user_id)
+    transactions = StockTransaction.query.filter_by(user_id=user.id).all()
+    portfolio = {}
+    
+    for transaction in transactions:
+        if transaction.stock_symbol not in portfolio:
+            portfolio[transaction.stock_symbol] = {'quantity': 0, 'total_value': 0}
+        
+        if transaction.transaction_type == 'BUY':
+            portfolio[transaction.stock_symbol]['quantity'] += transaction.quantity
+            portfolio[transaction.stock_symbol]['total_value'] += transaction.price * transaction.quantity
+        elif transaction.transaction_type == 'SELL':
+            portfolio[transaction.stock_symbol]['quantity'] -= transaction.quantity
+            portfolio[transaction.stock_symbol]['total_value'] -= transaction.price * transaction.quantity
+
+    total_portfolio_value = sum(stock['total_value'] for stock in portfolio.values())
+    return render_template('portfolio.html', portfolio=portfolio, total_portfolio_value=total_portfolio_value, user=user)
 
 
 
