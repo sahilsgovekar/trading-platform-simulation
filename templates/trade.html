@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Check Stock Price</title>
@@ -12,7 +13,8 @@
             color: #fff;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             width: 100%;
             background-color: #111;
@@ -21,14 +23,18 @@
         nav {
             position: fixed;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            /* Center items vertically */
             height: 12vh;
             width: 100%;
             padding: 2vw 10.4vw;
             justify-content: space-between;
-            background-color: #111; /* Changed nav bar color to white */
-            color: #fff; /* Changed nav bar text color to white */
+            background-color: #111;
             z-index: 10;
+        }
+
+        .logo {
+            text-transform: uppercase;
         }
 
         nav h1 {
@@ -38,22 +44,28 @@
         .nav-part2 {
             display: flex;
             gap: 2vw;
-            align-items: flex-start;
+            align-items: center;
+            /* Center items vertically */
             padding: 1vh 0;
             position: relative;
             z-index: 10;
         }
 
-        .nav-elem h4 a {
-            text-decoration: none;
-            color: #ffffff; /* Changed text color to black */
+        .nav-part2 h4 {
+            font-size: 0.73vw;
             text-transform: uppercase;
             font-weight: 600;
         }
 
-        .nav-part2 h4 {
-            font-size: 0.73vw;
-            margin-bottom: 2.6vw;
+        .nav-part2 h5 {
+            display: none;
+        }
+
+        .nav-part2 h5 span {
+            font-size: 0.77vw;
+            font-weight: 400;
+            transform: translateY(25px);
+            display: inline-block;
         }
 
         nav button {
@@ -66,7 +78,11 @@
             font-weight: 700;
             border-radius: 50px;
             border: none;
-            color: #fff; /* Changed button text color to white */
+        }
+
+        nav button svg {
+            height: 0.8vw;
+            margin-left: 1.6vw;
         }
 
         #nav-bottom {
@@ -77,6 +93,15 @@
             background-color: #111;
             z-index: 9;
             border-bottom: 1px solid #fff;
+        }
+
+        #btn {
+            text-align: right;
+        }
+
+        a,
+        #login-page {
+            text-decoration: none;
         }
 
         #content-container {
@@ -98,11 +123,13 @@
             color: #fff;
         }
 
-        select, button {
+        select,
+        button {
             padding: 10px;
             font-size: 1em;
             margin-top: 10px;
-            color: #000; /* Changed text color to black */
+            color: #000;
+            /* Changed text color to black */
         }
 
         button {
@@ -123,7 +150,8 @@
 
         .links a {
             text-decoration: none;
-            color: #000; /* Changed text color to black */
+            color: #000;
+            /* Changed text color to black */
             margin-right: 20px;
         }
 
@@ -145,7 +173,8 @@
             color: #ccc;
         }
 
-        .view-portfolio-button { /* Added button style */
+        .view-portfolio-button {
+            /* Added button style */
             background-color: #0BA34E;
             color: #fff;
             border: none;
@@ -161,28 +190,32 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <h1></h1>
         <div class="nav-part2">
-            <div class="logo" id="logo"> 
-                <h3>Future Flare</h3>
+            <div class="logo" id="logo">
+                <h1>Future flare</h1>
             </div>
             <div class="nav-elem">
-                <h4><a href="/">Home</a></h4>
+                <h3><a href="/">Home</a></h3>
+                <h5><span>Case Studies</span></h5>
             </div>
             <div class="nav-elem">
-                <h4><a href="/news" id="newss">News</a></h4>
+                <h3><a href="/news" id="newss">News</a></h3>
             </div>
             <div class="nav-elem">
-                <h4><a href="/about">About Agency</a></h4>
+                <h3><a href="/about">About</a></h3>
             </div>
             <div class="nav-elem">
-                <h4><a href="/market/trends">MarketTrends</a></h4>
+                <h3> <a href="/market/trends">Market Trend</a></h3>
             </div>
         </div>
-        <a href="/logout" id="logout-page"><button id="btn">Log Out</button></a>
-        <div id="nav-bottom"></div>
+        </div>
+        <a href="/login" id="login-page"><button id="btn">sign-up/login</button></a>
+        <div id="nav-bottom">
+        </div>
     </nav>
     <div id="content-container">
         <h1>Check Stock Price</h1>
@@ -190,14 +223,14 @@
             <label for="symbol">Stock Symbol:</label>
             <select id="symbol" name="symbol" style="width: 200px; color: #000;">
                 {% for symbol in symbols %}
-                    <option value="{{ symbol }}" style="color: #000;">{{ symbol }}</option>
+                <option value="{{ symbol }}" style="color: #000;">{{ symbol }}</option>
                 {% endfor %}
             </select>
             <button type="submit">Get Price</button>
         </form>
 
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#symbol').select2({
                     placeholder: 'Select a stock symbol',
                     allowClear: true
@@ -213,8 +246,9 @@
         <div class="portfolio">
             <h2>Portfolio</h2>
             <br>
-                <a href="{{ url_for('portfolio') }}" class="view-portfolio-button">View Portfolio</a>
+            <a href="{{ url_for('portfolio') }}" class="view-portfolio-button">View Portfolio</a>
         </div>
     </div>
 </body>
+
 </html>

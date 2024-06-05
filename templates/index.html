@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Future Flare</title>
-   <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="../static/styles/style_index.css">
-   
+
 
     <style>
         #video-container {
@@ -37,113 +37,114 @@
             cursor: pointer;
         }
     </style>
-    
+
 </head>
 
 <body>
     <nav>
         <h1></h1>
         <div class="nav-part2">
-            <div class="logo" id="logo"> 
-                <h3>Future flare</h3>
+            <div class="logo" id="logo">
+                <h1>Future flare</h1>
             </div>
             <div class="nav-elem">
-            
-                <h4><a href="/">Home</a></h4>
+                <h3><a href="/">Home</a></h3>
                 <h5><span>Case Studies</span></h5>
-                
             </div>
             <div class="nav-elem">
-                <h4><a href="/news" id="newss">news</a></h4>
-                
+                <h3><a href="/news" id="newss">News</a></h3>
             </div>
             <div class="nav-elem">
-                <h4><a href="/about">About agency</a></h4>
-               
+                <h3><a href="/about">About</a></h3>
             </div>
             <div class="nav-elem">
-                <h4> <a href="/market/trends">MarketTrends</a></h4>
+                <h3> <a href="/market/trends">Market Trend</a></h3>
             </div>
-        
-            </div>
+        </div>
         </div>
         <a href="/login" id="login-page"><button id="btn">sign-up/login</button></a>
         <div id="nav-bottom">
-
         </div>
     </nav>
-    
-  
+
+
     <div id="main">
         <div id="page1">
             <h1>Future FLare </h1>
-            <h1 >Stock Prediction</h1>
-            <p><h2> <strong>we forecast the stocks and predictprices for future enahancements</strong></h2></p>
-           
-            
-        </div>
-       c
-    
-     
-            
+            <h1>Stock Prediction</h1>
+            <p>
+            <h2> <strong>we forecast the stocks and predictprices for future enahancements</strong></h2>
+            </p>
 
-        
-       <!-- <div id="page3"> -->
+
+        </div>
+        c
+
+
+
+
+
+        <!-- <div id="page3"> -->
         <div id="video-container">
-    <video id="video" controls>
-        <source src="{{ url_for('static', filename='vid.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <button id="play-button" class="play-button">Play</button>
-</div>
-    <!-- </div> -->
-    
-       <div id="page4">
+            <video id="video" controls>
+                <source src="{{ url_for('static', filename='vid.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="play-button" class="play-button">Play</button>
+        </div>
+        <!-- </div> -->
+
+        <div id="page4">
             <div class="section">
                 <div class="sec-left">
                     <h2>Top gainers📈Losers📉 </h2>
-                    <p id="page4para">Top gainers and losers refer to the stocks or assets that have experienced the highest percentage 
-                        increase or decrease in value over a specific period, typically a trading day. Gainers signify assets that have 
-                        performed exceptionally well, often due to positive news, strong earnings reports, or market sentiment. Conversely, 
-                        losers represent assets that have declined significantly in value, usually due to negative news, poor financial results, 
+                    <p id="page4para">Top gainers and losers refer to the stocks or assets that have experienced the
+                        highest percentage
+                        increase or decrease in value over a specific period, typically a trading day. Gainers signify
+                        assets that have
+                        performed exceptionally well, often due to positive news, strong earnings reports, or market
+                        sentiment. Conversely,
+                        losers represent assets that have declined significantly in value, usually due to negative news,
+                        poor financial results,
                         or market downturns. </p>
                 </div>
                 <div class="sec-right" id="gainers">
                     <div class="tradingview-widget-container">
                         <div class="tradingview-widget-container__widget"></div>
                         <div class="tradingview-widget-copyright">
-                          
-                          
+
+
                         </div>
-                      </div>
-                    
-                      
-                      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async></script>
-                      <script type="text/javascript">
-                        
+                    </div>
+
+
+                    <script type="text/javascript"
+                        src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async></script>
+                    <script type="text/javascript">
+
                         var config = {
-                          "colorTheme": "dark",
-                          "dateRange": "12M",
-                          "exchange": "US",
-                          "showChart": true,
-                          "locale": "en",
-                          "largeChartUrl": "",
-                          "isTransparent": false,
-                          "showSymbolLogo": false,
-                          "showFloatingTooltip": false,
-                          "width": "700",
-                          "height": "600",
-                          "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
-                          "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-                          "gridLineColor": "rgba(240, 243, 250, 0)",
-                          "scaleFontColor": "rgba(106, 109, 120, 1)",
-                          "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-                          "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-                          "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-                          "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-                          "symbolActiveColor": "rgba(41, 98, 255, 0.12)"
+                            "colorTheme": "dark",
+                            "dateRange": "12M",
+                            "exchange": "US",
+                            "showChart": true,
+                            "locale": "en",
+                            "largeChartUrl": "",
+                            "isTransparent": false,
+                            "showSymbolLogo": false,
+                            "showFloatingTooltip": false,
+                            "width": "700",
+                            "height": "600",
+                            "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+                            "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                            "gridLineColor": "rgba(240, 243, 250, 0)",
+                            "scaleFontColor": "rgba(106, 109, 120, 1)",
+                            "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                            "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                            "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                            "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                            "symbolActiveColor": "rgba(41, 98, 255, 0.12)"
                         };
-                      </script>
+                    </script>
                 </div>
             </div>
             <div class="section">
@@ -156,209 +157,212 @@
                 <div class="sec-right">
                     <div class="tradingview-widget-container">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js"></script>
-<script type="text/javascript">
-    new TradingView.MarketQuotesWidget({
-        "width": "700",
-        "height": "500",
-        "symbolsGroups": [
-            {
-                "name": "Indices",
-                "originalName": "Indices",
-                "symbols": [
-                    {
-                        "name": "NASDAQ:TSLA"
-                    },
-                    {
-                        "name": "NASDAQ:NVDA"
-                    },
-                    {
-                        "name": "NASDAQ:AAPL"
-                    },
-                    {
-                        "name": "NASDAQ:META"
-                    },
-                    {
-                        "name": "NASDAQ:MSFT"
-                    },
-                    {
-                        "name": "NASDAQ:NFLX"
-                    },
-                    {
-                        "name": "NASDAQ:GOOGL"
-                    },
-                    {
-                        "name": "NSE:ICICIBANK"
-                    },
-                    {
-                        "name": "NSE:BAJFINANCE"
-                    }
-                ]
-            },
-            {
-                "name": "Futures",
-                "originalName": "Futures",
-                "symbols": [
-                    {
-                        "name": "CME_MINI:ES1!",
-                        "displayName": "S&P 500"
-                    },
-                    {
-                        "name": "CME:6E1!",
-                        "displayName": "Euro"
-                    },
-                    {
-                        "name": "COMEX:GC1!",
-                        "displayName": "Gold"
-                    },
-                    {
-                        "name": "NYMEX:CL1!",
-                        "displayName": "WTI Crude Oil"
-                    },
-                    {
-                        "name": "NYMEX:NG1!",
-                        "displayName": "Gas"
-                    },
-                    {
-                        "name": "CBOT:ZC1!",
-                        "displayName": "Corn"
-                    }
-                ]
-            },
-            {
-                "name": "Bonds",
-                "originalName": "Bonds",
-                "symbols": [
-                    {
-                        "name": "CBOT:ZB1!",
-                        "displayName": "T-Bond"
-                    },
-                    {
-                        "name": "CBOT:UB1!",
-                        "displayName": "Ultra T-Bond"
-                    },
-                    {
-                        "name": "EUREX:FGBL1!",
-                        "displayName": "Euro Bund"
-                    },
-                    {
-                        "name": "EUREX:FBTP1!",
-                        "displayName": "Euro BTP"
-                    },
-                    {
-                        "name": "EUREX:FGBM1!",
-                        "displayName": "Euro BOBL"
-                    }
-                ]
-            },
-            {
-                "name": "Forex",
-                "originalName": "Forex",
-                "symbols": [
-                    {
-                        "name": "FX:EURUSD",
-                        "displayName": "EUR to USD"
-                    },
-                    {
-                        "name": "FX:GBPUSD",
-                        "displayName": "GBP to USD"
-                    },
-                    {
-                        "name": "FX:USDJPY",
-                        "displayName": "USD to JPY"
-                    },
-                    {
-                        "name": "FX:USDCHF",
-                        "displayName": "USD to CHF"
-                    },
-                    {
-                        "name": "FX:AUDUSD",
-                        "displayName": "AUD to USD"
-                    },
-                    {
-                        "name": "FX:USDCAD",
-                        "displayName": "USD to CAD"
-                    }
-                ]
-            }
-        ],
-        "showSymbolLogo": true,
-        "isTransparent": false,
-        "colorTheme": "dark",
-        "locale": "en",
-        "backgroundColor": "#131722"
-    });
-</script>
+                        <script type="text/javascript"
+                            src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.MarketQuotesWidget({
+                                "width": "700",
+                                "height": "500",
+                                "symbolsGroups": [
+                                    {
+                                        "name": "Indices",
+                                        "originalName": "Indices",
+                                        "symbols": [
+                                            {
+                                                "name": "NASDAQ:TSLA"
+                                            },
+                                            {
+                                                "name": "NASDAQ:NVDA"
+                                            },
+                                            {
+                                                "name": "NASDAQ:AAPL"
+                                            },
+                                            {
+                                                "name": "NASDAQ:META"
+                                            },
+                                            {
+                                                "name": "NASDAQ:MSFT"
+                                            },
+                                            {
+                                                "name": "NASDAQ:NFLX"
+                                            },
+                                            {
+                                                "name": "NASDAQ:GOOGL"
+                                            },
+                                            {
+                                                "name": "NSE:ICICIBANK"
+                                            },
+                                            {
+                                                "name": "NSE:BAJFINANCE"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "Futures",
+                                        "originalName": "Futures",
+                                        "symbols": [
+                                            {
+                                                "name": "CME_MINI:ES1!",
+                                                "displayName": "S&P 500"
+                                            },
+                                            {
+                                                "name": "CME:6E1!",
+                                                "displayName": "Euro"
+                                            },
+                                            {
+                                                "name": "COMEX:GC1!",
+                                                "displayName": "Gold"
+                                            },
+                                            {
+                                                "name": "NYMEX:CL1!",
+                                                "displayName": "WTI Crude Oil"
+                                            },
+                                            {
+                                                "name": "NYMEX:NG1!",
+                                                "displayName": "Gas"
+                                            },
+                                            {
+                                                "name": "CBOT:ZC1!",
+                                                "displayName": "Corn"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "Bonds",
+                                        "originalName": "Bonds",
+                                        "symbols": [
+                                            {
+                                                "name": "CBOT:ZB1!",
+                                                "displayName": "T-Bond"
+                                            },
+                                            {
+                                                "name": "CBOT:UB1!",
+                                                "displayName": "Ultra T-Bond"
+                                            },
+                                            {
+                                                "name": "EUREX:FGBL1!",
+                                                "displayName": "Euro Bund"
+                                            },
+                                            {
+                                                "name": "EUREX:FBTP1!",
+                                                "displayName": "Euro BTP"
+                                            },
+                                            {
+                                                "name": "EUREX:FGBM1!",
+                                                "displayName": "Euro BOBL"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "Forex",
+                                        "originalName": "Forex",
+                                        "symbols": [
+                                            {
+                                                "name": "FX:EURUSD",
+                                                "displayName": "EUR to USD"
+                                            },
+                                            {
+                                                "name": "FX:GBPUSD",
+                                                "displayName": "GBP to USD"
+                                            },
+                                            {
+                                                "name": "FX:USDJPY",
+                                                "displayName": "USD to JPY"
+                                            },
+                                            {
+                                                "name": "FX:USDCHF",
+                                                "displayName": "USD to CHF"
+                                            },
+                                            {
+                                                "name": "FX:AUDUSD",
+                                                "displayName": "AUD to USD"
+                                            },
+                                            {
+                                                "name": "FX:USDCAD",
+                                                "displayName": "USD to CAD"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "showSymbolLogo": true,
+                                "isTransparent": false,
+                                "colorTheme": "dark",
+                                "locale": "en",
+                                "backgroundColor": "#131722"
+                            });
+                        </script>
 
-                 </div>
+                    </div>
 
-                      
 
-                
 
-        </div>
-       </div>
-           
-        <div id="page5">
-            <button><a href="/admin_login">Admin</a></button>
-            <div id="page5-right">
-                <p>
-                     
-                </p>
-                <div id="page5-content">
-                    <div class="uiux">
-                        <details open>
-                            <summary>
-                                <h1> Profitable investments</h1>
-                                <div id="flex">
-                                    <h4>apple</h4>
-                                    <h4>google</h4>
-                                    <h4>Tesla</h4>
-                                    <h4>Meta</h4>
-                                    
-                                
-                                </div>
-                            </summary>
-                            <div id="page-container">
-                                <div class="page5-elem">
-                                    <div class="over"></div>
-                                    <h3>Apple</h3>
-                                    <p>
+
+
+                </div>
+            </div>
+
+            <div id="page5">
+                <button><a href="/admin_login">Admin</a></button>
+                <div id="page5-right">
+                    <p>
+
+                    </p>
+                    <div id="page5-content">
+                        <div class="uiux">
+                            <details open>
+                                <summary>
+                                    <h1> Profitable investments</h1>
+                                    <div id="flex">
+                                        <h4>apple</h4>
+                                        <h4>google</h4>
+                                        <h4>Tesla</h4>
+                                        <h4>Meta</h4>
+
+
+                                    </div>
+                                </summary>
+                                <div id="page-container">
+                                    <div class="page5-elem">
+                                        <div class="over"></div>
+                                        <h3>Apple</h3>
+                                        <p>
                                         <div class="tradingview-widget-container">
                                             <div class="tradingview-widget-container__widget"></div>
                                             <div class=""></div>
-                                          </div>
-                                          
-                                          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js"></script>
-                                          <script type="text/javascript">
-                                            new TradingView.widget({
-                                              "symbol": "NASDAQ:AAPL",
-                                              "width": "800",
-                                              "locale": "en",
-                                              "colorTheme": "dark",
-                                              "isTransparent": false
-                                            });
-                                          </script>
-                                    </p>      
-                                          
-                                          
-                                            
-                                          
+                                        </div>
 
-                                    
-                                    <i class="ri-arrow-right-up-line"></i>
-                                </div>
-                                <div class="page5-elem">
-                                    <div class="over"></div>
-                                    <h3>Google</h3>
-                                    <p>
+                                        <script type="text/javascript"
+                                            src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js"></script>
+                                        <script type="text/javascript">
+                                            new TradingView.widget({
+                                                "symbol": "NASDAQ:AAPL",
+                                                "width": "800",
+                                                "locale": "en",
+                                                "colorTheme": "dark",
+                                                "isTransparent": false
+                                            });
+                                        </script>
+                                        </p>
+
+
+
+
+
+
+                                        <i class="ri-arrow-right-up-line"></i>
+                                    </div>
+                                    <div class="page5-elem">
+                                        <div class="over"></div>
+                                        <h3>Google</h3>
+                                        <p>
                                         <div class="tradingview-widget-container">
                                             <div class="tradingview-widget-container__widget"></div>
-                                            
-                                          </div>
-                                          
-                                          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js"></script>
-                                          <script type="text/javascript">
+
+                                        </div>
+
+                                        <script type="text/javascript"
+                                            src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js"></script>
+                                        <script type="text/javascript">
                                             new TradingView.widget(
                                                 {
                                                     "symbol": "NASDAQ:GOOG",
@@ -368,87 +372,89 @@
                                                     "isTransparent": false
                                                 }
                                             );
-                                          </script>
-                                          
+                                        </script>
 
 
-                                    </p>
-                                    <i class="ri-arrow-right-up-line"></i>
+
+                                        </p>
+                                        <i class="ri-arrow-right-up-line"></i>
+                                    </div>
+                                    <div class="page5-elem">
+                                        <div class="over"></div>
+                                        <h3>Tesla</h3>
+                                        <p>
+
+
+                                        </p>
+                                        <i class="ri-arrow-right-up-line"></i>
+                                    </div>
+                                    <div class="page5-elem">
+                                        <div class="over"></div>
+                                        <h3>Meta</h3>
+                                        <p></p>
+                                        <i class="ri-arrow-right-up-line"></i>
+                                    </div>
                                 </div>
-                                <div class="page5-elem">
-                                    <div class="over"></div>
-                                    <h3>Tesla</h3>
-                                    <p>
-                                          
-                                           
-                                    </p>
-                                    <i class="ri-arrow-right-up-line"></i>
-                                </div>
-                                <div class="page5-elem">
-                                    <div class="over"></div>
-                                    <h3>Meta</h3>
-                                    <p></p>
-                                    <i class="ri-arrow-right-up-line"></i>
-                                </div>
-                            </div>
-                        </details>
+                            </details>
+                        </div>
+
                     </div>
-                    
                 </div>
             </div>
-        </div>
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-columns">
-                    <div class="footer-column">
-                        <h3>About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec sem id metus elementum aliquam.</p>
-                        <p>Fusce in nisl sit amet risus eleifend commodo. Sed vel ex eu lectus vestibulum efficitur.</p>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="##">Services</a></li>
-                            <li><a href="###">About</a></li>
-                            <li><a href="####">Contact</a></li>
-                            <li class="connect-with-us"><a href="#">Connect with Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Contact Us</h3>
-                        <p>Address: 123 Street, City, Country</p>
-                        <p>Email: futureFlare@.com</p>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <footer class="site-footer">
+                <div class="container">
+                    <div class="footer-columns">
+                        <div class="footer-column">
+                            <h3>About Us</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec sem id metus
+                                elementum aliquam.</p>
+                            <p>Fusce in nisl sit amet risus eleifend commodo. Sed vel ex eu lectus vestibulum efficitur.
+                            </p>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Quick Links</h3>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="##">Services</a></li>
+                                <li><a href="###">About</a></li>
+                                <li><a href="####">Contact</a></li>
+                                <li class="connect-with-us"><a href="#">Connect with Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Contact Us</h3>
+                            <p>Address: 123 Street, City, Country</p>
+                            <p>Email: futureFlare@.com</p>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="copyright">
-                &copy; 2023 Your Company. All rights reserved.
-            </div>
-        </footer>
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-        
-       
-            
-        
-        
-    </div>
- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <div class="copyright">
+                    &copy; 2023 Your Company. All rights reserved.
+                </div>
+            </footer>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+
+
+
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+            integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+            integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="../assets/scri.js"></script>
         <script>
-            document.getElementById('play-button').addEventListener('click', function() {
+            document.getElementById('play-button').addEventListener('click', function () {
                 var video = document.getElementById('video');
                 if (video.paused) {
                     video.play();

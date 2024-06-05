@@ -1,149 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Market Flow</title>
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: gilroy, sans-serif;
-    color: #fff;
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: gilroy, sans-serif;
+            color: #fff;
+        }
 
-html, body {
-    height: 100%;
-    width: 100%;
-    background-color: #111;
-}
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background-color: #111;
+        }
 
-nav {
-    position: fixed;
-    display: flex;
-    align-items: flex-start;
-    height: 12vh;
-    width: 100%;
-    padding: 2vw 10.4vw;
-    justify-content: space-between;
-    background-color: #111;
-    z-index: 10;
-}
+        nav {
+            position: fixed;
+            display: flex;
+            align-items: center;
+            /* Center items vertically */
+            height: 12vh;
+            width: 100%;
+            padding: 2vw 10.4vw;
+            justify-content: space-between;
+            background-color: #111;
+            z-index: 10;
+        }
 
-nav h1 {
-    font-size: 1.6vw;
-}
+        .logo {
+            text-transform: uppercase;
+        }
 
-.nav-part2 {
-    display: flex;
-    gap: 2vw;
-    align-items: flex-start;
-    padding: 1vh 0;
-    position: relative;
-    z-index: 10;
-}
+        nav h1 {
+            font-size: 1.6vw;
+        }
 
-.nav-elem h4 a {
-    text-decoration: none;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 600;
-}
+        .nav-part2 {
+            display: flex;
+            gap: 2vw;
+            align-items: center;
+            /* Center items vertically */
+            padding: 1vh 0;
+            position: relative;
+            z-index: 10;
+        }
 
-.nav-part2 h4 {
-    font-size: 0.73vw;
-    margin-bottom: 2.6vw;
-}
+        .nav-part2 h4 {
+            font-size: 0.73vw;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
 
-nav button {
-    background-color: #0BA34E;
-    display: flex;
-    align-items: center;
-    padding: 14px 20px;
-    font-size: 0.85vw;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-radius: 50px;
-    border: none;
-}
+        .nav-part2 h5 {
+            display: none;
+        }
 
-#nav-bottom {
-    width: 100%;
-    height: 1vh;
-    position: absolute;
-    top: 100%;
-    background-color: #111;
-    z-index: 9;
-    border-bottom: 1px solid #fff;
-}
+        .nav-part2 h5 span {
+            font-size: 0.77vw;
+            font-weight: 400;
+            transform: translateY(25px);
+            display: inline-block;
+        }
 
-.container {
-    padding: 15vh 10vw;
-    background-color: #111;
-    text-align: center;
-}
+        nav button {
+            background-color: #0BA34E;
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            font-size: 0.85vw;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+        }
 
-h1, h2 {
-    color: #fff;
-    margin-bottom: 20px;
-}
+        nav button svg {
+            height: 0.8vw;
+            margin-left: 1.6vw;
+        }
 
-.section {
-    margin-bottom: 40px;
-}
+        #nav-bottom {
+            width: 100%;
+            height: 1vh;
+            position: absolute;
+            top: 100%;
+            background-color: #111;
+            z-index: 9;
+            border-bottom: 1px solid #fff;
+        }
 
-.market-table {
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
+        #btn {
+            text-align: right;
+        }
 
-.market-table th, .market-table td {
-    padding: 10px;
-    border: 1px solid #fff;
-}
+        a,
+        #login-page {
+            text-decoration: none;
+        }
 
-.market-table th {
-    background-color: #333;
-}
+        .container {
+            padding: 15vh 10vw;
+            background-color: #111;
+            text-align: center;
+        }
 
-.market-table td {
-    text-align: center;
-}
+        h1,
+        h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
 
-.gainer td {
-    color: #0BA34E; /* Green for gainers */
-}
+        .section {
+            margin-bottom: 40px;
+        }
 
-.loser td {
-    color: #FF0000; /* Red for losers */
-}
+        .market-table {
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
 
+        .market-table th,
+        .market-table td {
+            padding: 10px;
+            border: 1px solid #fff;
+        }
+
+        .market-table th {
+            background-color: #333;
+        }
+
+        .market-table td {
+            text-align: center;
+        }
+
+        .gainer td {
+            color: #0BA34E;
+            /* Green for gainers */
+        }
+
+        .loser td {
+            color: #FF0000;
+            /* Red for losers */
+        }
     </style>
 </head>
+
 <body>
     <nav>
         <h1></h1>
         <div class="nav-part2">
-            <div class="logo" id="logo"> 
-                <h3>Future Flare</h3>
+            <div class="logo" id="logo">
+                <h1>Future flare</h1>
             </div>
             <div class="nav-elem">
-                <h4><a href="/">Home</a></h4>
+                <h3><a href="/">Home</a></h3>
+                <h5><span>Case Studies</span></h5>
             </div>
             <div class="nav-elem">
-                <h4><a href="/news" id="newss">News</a></h4>
+                <h3><a href="/news" id="newss">News</a></h3>
             </div>
             <div class="nav-elem">
-                <h4><a href="/about">About Agency</a></h4>
+                <h3><a href="/about">About</a></h3>
             </div>
             <div class="nav-elem">
-                <h4> <a href="/market/trends">MarketTrends</a></h4>
+                <h3> <a href="/market/trends">Market Trend</a></h3>
             </div>
         </div>
-        <a href="/login" id="login-page"><button id="btn">Sign-up/Login</button></a>
-        <div id="nav-bottom"></div>
+        </div>
+        <a href="/login" id="login-page"><button id="btn">sign-up/login</button></a>
+        <div id="nav-bottom">
+        </div>
     </nav>
     <div class="container">
         <h1>Market Flow</h1>
@@ -191,4 +225,5 @@ h1, h2 {
         </div>
     </div>
 </body>
+
 </html>

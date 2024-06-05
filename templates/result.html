@@ -3,6 +3,7 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Stock Price</title>
@@ -15,7 +16,8 @@
             color: #fff;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             width: 100%;
             background-color: #111;
@@ -24,14 +26,18 @@
         nav {
             position: fixed;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            /* Center items vertically */
             height: 12vh;
             width: 100%;
             padding: 2vw 10.4vw;
             justify-content: space-between;
-            background-color: #111; /* Changed nav bar color to dark */
-            color: #fff; /* Changed nav bar text color to white */
+            background-color: #111;
             z-index: 10;
+        }
+
+        .logo {
+            text-transform: uppercase;
         }
 
         nav h1 {
@@ -41,22 +47,28 @@
         .nav-part2 {
             display: flex;
             gap: 2vw;
-            align-items: flex-start;
+            align-items: center;
+            /* Center items vertically */
             padding: 1vh 0;
             position: relative;
             z-index: 10;
         }
 
-        .nav-elem h4 a {
-            text-decoration: none;
-            color: #fff; /* Changed text color to white */
+        .nav-part2 h4 {
+            font-size: 0.73vw;
             text-transform: uppercase;
             font-weight: 600;
         }
 
-        .nav-part2 h4 {
-            font-size: 0.73vw;
-            margin-bottom: 2.6vw;
+        .nav-part2 h5 {
+            display: none;
+        }
+
+        .nav-part2 h5 span {
+            font-size: 0.77vw;
+            font-weight: 400;
+            transform: translateY(25px);
+            display: inline-block;
         }
 
         nav button {
@@ -69,7 +81,11 @@
             font-weight: 700;
             border-radius: 50px;
             border: none;
-            color: #fff; /* Changed button text color to white */
+        }
+
+        nav button svg {
+            height: 0.8vw;
+            margin-left: 1.6vw;
         }
 
         #nav-bottom {
@@ -80,6 +96,15 @@
             background-color: #111;
             z-index: 9;
             border-bottom: 1px solid #fff;
+        }
+
+        #btn {
+            text-align: right;
+        }
+
+        a,
+        #login-page {
+            text-decoration: none;
         }
 
         #content-container {
@@ -103,11 +128,13 @@
             color: #fff;
         }
 
-        input[type="number"], button {
+        input[type="number"],
+        button {
             padding: 10px;
             font-size: 1em;
             margin-top: 10px;
-            color: #000; /* Changed text color to black */
+            color: #000;
+            /* Changed text color to black */
         }
 
         button {
@@ -137,28 +164,32 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <h1></h1>
         <div class="nav-part2">
-            <div class="logo" id="logo"> 
-                <h3>Future Flare</h3>
+            <div class="logo" id="logo">
+                <h1>Future flare</h1>
             </div>
             <div class="nav-elem">
-                <h4><a href="/">Home</a></h4>
+                <h3><a href="/">Home</a></h3>
+                <h5><span>Case Studies</span></h5>
             </div>
             <div class="nav-elem">
-                <h4><a href="/news" id="newss">News</a></h4>
+                <h3><a href="/news" id="newss">News</a></h3>
             </div>
             <div class="nav-elem">
-                <h4><a href="/about">About Agency</a></h4>
+                <h3><a href="/about">About</a></h3>
             </div>
             <div class="nav-elem">
-                <h4><a href="/market/trends">MarketTrends</a></h4>
+                <h3> <a href="/market/trends">Market Trend</a></h3>
             </div>
         </div>
-        <a href="/logout" id="logout-page"><button id="btn">Log Out</button></a>
-        <div id="nav-bottom"></div>
+        </div>
+        <a href="/login" id="login-page"><button id="btn">sign-up/login</button></a>
+        <div id="nav-bottom">
+        </div>
     </nav>
     <div id="content-container">
         <h1>Stock Price for {{ symbol }}</h1>
@@ -189,8 +220,9 @@
             <input type="hidden" name="symbol" value="{{ symbol }}">
             <button type="submit">Predict</button>
         </form>
-        
+
     </div>
 </body>
+
 </html>
 {% endblock %}
