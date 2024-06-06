@@ -14,6 +14,10 @@ import sqlite3
 import xmltodict
 import yfinance as yf
 from yahoo_fin import stock_info as si
+import plotly.graph_objs as go
+import plotly.io as pio
+import datetime
+
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///trading.db"
@@ -145,6 +149,78 @@ def get_stock_price():
     if stock_price is None:
         stock_price = stock.history(period="1d")["Close"].iloc[-1]
 
+    # Fetch intraday data for the stock
+    now = datetime.datetime.now()
+    start = now - datetime.timedelta(hours=6)
+    intraday_data = stock.history(start=start, end=now, interval="5m")
+
+    graph_html = ""
+    if not intraday_data.empty:
+        # Determine color based on price movement
+        try:
+            price_change = intraday_data["Close"].iloc[-1] - intraday_data["Open"].iloc[0]
+            line_color = "green" if price_change > 0 else "red"
+
+            # Create plotly graph
+            # Create plotly graph
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=intraday_data.index, y=intraday_data["Close"], mode='lines', line=dict(color=line_color)))
+            fig.update_layout(
+                title=f"{stock_symbol} Performance (Last 6 Hours)",
+                xaxis_title="Time",
+                yaxis_title="Price",
+                template="plotly_dark",
+                paper_bgcolor="rgba(0, 0, 0, 0)",
+                plot_bgcolor="#111",
+                font=dict(color="#fff"),
+                xaxis=dict(
+                    gridcolor="#444",
+                    linecolor="#444"
+                ),
+                yaxis=dict(
+                    gridcolor="#444",
+                    linecolor="#444"
+                )
+            )
+
+            graph_html = pio.to_html(fig, full_html=False)
+        except IndexError:
+            flash("Error fetching intraday data for the stock. Displaying fallback data.")
+    else:
+        # Fetch historical data as a fallback
+        fallback_data = stock.history(period="5d", interval="1h")
+        if not fallback_data.empty:
+            try:
+                price_change = fallback_data["Close"].iloc[-1] - fallback_data["Open"].iloc[0]
+                line_color = "green" if price_change > 0 else "red"
+
+                # Create plotly graph with fallback data
+                # Create plotly graph with fallback data
+                fig = go.Figure()
+                fig.add_trace(go.Scatter(x=fallback_data.index, y=fallback_data["Close"], mode='lines', line=dict(color=line_color)))
+                fig.update_layout(
+                    title=f"{stock_symbol} Performance (Last 5 Days)",
+                    xaxis_title="Time",
+                    yaxis_title="Price",
+                    template="plotly_dark",
+                    paper_bgcolor="rgba(0, 0, 0, 0)",
+                    plot_bgcolor="#111",
+                    font=dict(color="#fff"),
+                    xaxis=dict(
+                        gridcolor="#444",
+                        linecolor="#444"
+                    ),
+                    yaxis=dict(
+                        gridcolor="#444",
+                        linecolor="#444"
+                    )
+                )
+                graph_html = pio.to_html(fig, full_html=False)
+            except IndexError:
+                flash("Error fetching fallback data for the stock. Please try again later.")
+        else:
+            flash("No historical data available for the selected stock.")
+
     transactions = StockTransaction.query.filter_by(
         stock_symbol=stock_symbol, user_id=current_user.id
     ).all()
@@ -158,7 +234,10 @@ def get_stock_price():
         price=stock_price,
         funds=current_user.funds,
         quantity=total_quantity,
+        graph_html=graph_html
     )
+
+
 
 
 @app.route("/buy_stock", methods=["POST"])
