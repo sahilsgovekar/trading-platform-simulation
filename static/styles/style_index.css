@@ -16,7 +16,6 @@ nav {
     position: fixed;
     display: flex;
     align-items: center;
-    /* Center items vertically */
     height: 12vh;
     width: 100%;
     padding: 2vw 10.4vw;
@@ -37,7 +36,6 @@ nav h1 {
     display: flex;
     gap: 2vw;
     align-items: center;
-    /* Center items vertically */
     padding: 1vh 0;
     position: relative;
     z-index: 10;
@@ -78,10 +76,11 @@ nav button svg {
 }
 
 #nav-bottom {
-    width: 100%;
+    width: 80%;
     height: 1vh;
     position: absolute;
     top: 100%;
+    left: 10%;
     background-color: #111;
     z-index: 9;
     border-bottom: 1px solid #fff;
@@ -96,6 +95,13 @@ a,
     text-decoration: none;
 }
 
+.nav-elem a {
+    margin-top: 0px !important;
+}
+
+#login-page {
+    margin-top: 0px !important;
+}
 
 #page1 {
     height: 100vh;
