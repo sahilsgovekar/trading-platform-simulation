@@ -13,14 +13,15 @@
 
     <style>
         #video-container {
-            /* position: relative; */
+            position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
+            margin: auto;
         }
 
         video {
             width: 100%;
-            padding-left: 600px;
+            display: block;
             align-items: center;
         }
 
@@ -31,10 +32,12 @@
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.5);
             color: #fff;
-            padding: 10px 20px;
+            padding: 20px 40px;
+            font-size: 1.5em;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
+            z-index: 1;
         }
     </style>
 
@@ -62,11 +65,11 @@
         </div>
         </div>
         {% if current_user.is_authenticated %}
-                    <span>Welcome, {{ current_user.username }}!</span>
-                    <a href="/logout" id="login-page">Logout</a>
+        <span>Welcome, {{ current_user.username }}!</span>
+        <a href="/logout" id="login-page">Logout</a>
         {% else %}
-                    <a href="/login" id="login-page">Login</a>
-                    <a href="/signup" id="login-page">Sign Up</a>
+        <a href="/login" id="login-page">Login</a>
+        <a href="/signup" id="login-page">Sign Up</a>
         {% endif %}
         <div id="nav-bottom">
         </div>
@@ -81,13 +84,7 @@
             <h2> <strong>we forecast the stocks and predictprices for future enahancements</strong></h2>
             </p>
 
-
         </div>
-        c
-
-
-
-
 
         <!-- <div id="page3"> -->
         <div id="video-container">
@@ -156,7 +153,6 @@
                 <div class="sec-left">
                     <h2>Market Overview</h2>
                     <p id="page4para2">
-
                     </p>
                 </div>
                 <div class="sec-right">
@@ -296,13 +292,7 @@
                                 "backgroundColor": "#131722"
                             });
                         </script>
-
                     </div>
-
-
-
-
-
                 </div>
             </div>
 
@@ -310,7 +300,6 @@
                 <button><a href="/admin_login">Admin</a></button>
                 <div id="page5-right">
                     <p>
-
                     </p>
                     <div id="page5-content">
                         <div class="uiux">
@@ -348,12 +337,6 @@
                                             });
                                         </script>
                                         </p>
-
-
-
-
-
-
                                         <i class="ri-arrow-right-up-line"></i>
                                     </div>
                                     <div class="page5-elem">
@@ -379,8 +362,6 @@
                                             );
                                         </script>
 
-
-
                                         </p>
                                         <i class="ri-arrow-right-up-line"></i>
                                     </div>
@@ -388,7 +369,6 @@
                                         <div class="over"></div>
                                         <h3>Tesla</h3>
                                         <p>
-
 
                                         </p>
                                         <i class="ri-arrow-right-up-line"></i>
@@ -445,10 +425,6 @@
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
-
-
-
-
         </div>
         <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
@@ -471,5 +447,22 @@
             });
         </script>
 </body>
+<script>
+    document.getElementById('play-button').addEventListener('click', function () {
+        var video = document.getElementById('video');
+        if (video.paused) {
+            video.play();
+            this.style.display = 'none';
+        }
+    });
+
+    document.getElementById('video').addEventListener('play', function () {
+        document.getElementById('play-button').style.display = 'none';
+    });
+
+    document.getElementById('video').addEventListener('pause', function () {
+        document.getElementById('play-button').style.display = 'block';
+    });
+</script>
 
 </html>

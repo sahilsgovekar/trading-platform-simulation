@@ -19,6 +19,7 @@ nav {
     /* Center items vertically */
     height: 12vh;
     width: 100%;
+    gap: 2vw;
     padding: 2vw 10.4vw;
     justify-content: space-between;
     background-color: #111;
@@ -78,10 +79,11 @@ nav button svg {
 }
 
 #nav-bottom {
-    width: 100%;
+    width: 80%;
     height: 1vh;
     position: absolute;
     top: 100%;
+    left: 10%;
     background-color: #111;
     z-index: 9;
     border-bottom: 1px solid #fff;
@@ -94,6 +96,14 @@ nav button svg {
 a,
 #login-page {
     text-decoration: none;
+}
+
+.nav-elem a {
+    margin-top: 0px !important;
+}
+
+#login-page {
+    margin-top: 0px !important;
 }
 
 
