@@ -27,7 +27,6 @@
             position: fixed;
             display: flex;
             align-items: center;
-            /* Center items vertically */
             height: 12vh;
             width: 100%;
             padding: 2vw 10.4vw;
@@ -48,7 +47,6 @@
             display: flex;
             gap: 2vw;
             align-items: center;
-            /* Center items vertically */
             padding: 1vh 0;
             position: relative;
             z-index: 10;
@@ -135,7 +133,6 @@
             font-size: 1em;
             margin-top: 10px;
             color: #000;
-            /* Changed text color to black */
         }
 
         button {
@@ -187,16 +184,24 @@
                 <h3> <a href="/market/trends">Market Trend</a></h3>
             </div>
         </div>
-        </div>
-        <a href="/login" id="login-page"><button id="btn">sign-up/login</button></a>
-        <div id="nav-bottom">
-        </div>
+        {% if current_user.is_authenticated %}
+                    <span>Welcome, {{ current_user.username }}!</span>
+                    <a href="/logout" id="login-page">Logout</a>
+        {% else %}
+                    <a href="/login" id="login-page">Login</a>
+                    <a href="/signup" id="login-page">Sign Up</a>
+        {% endif %}
+        <div id="nav-bottom"></div>
     </nav>
     <div id="content-container">
         <h1>Stock Price for {{ symbol }}</h1>
         <p>The current price is: ${{ price }}</p>
         <p>Available funds: ${{ funds }}</p>
         <p>Owned quantity: {{ quantity }}</p>
+
+        <div>
+            {{ graph_html | safe }}
+        </div>
 
         <form action="/buy_stock" method="post">
             <input type="hidden" name="symbol" value="{{ symbol }}">
@@ -215,13 +220,10 @@
             <button type="submit">Sell</button>
         </form>
         {% endif %}
-
-        <a href="{{ url_for('trade') }}">Check another stock</a>
         <form action="/predict" method="post">
             <input type="hidden" name="symbol" value="{{ symbol }}">
             <button type="submit">Predict</button>
         </form>
-
     </div>
 </body>
 

@@ -36,6 +36,10 @@ query_params = st.experimental_get_query_params()
 selected_stock = query_params.get("stock_symbol", [""])[0]
 
 st.title(selected_stock)
+st.markdown("[Go back](http://localhost:5000/trade)")
+
+
+
 
 n_years = st.slider('Years of prediction:', 1, 4)
 period = n_years* 365

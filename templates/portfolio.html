@@ -184,7 +184,13 @@
             </div>
         </div>
         </div>
-        <a href="/login" id="login-page"><button id="btn">sign-up/login</button></a>
+        {% if current_user.is_authenticated %}
+                    <span>Welcome, {{ current_user.username }}!</span>
+                    <a href="/logout" id="login-page">Logout</a>
+        {% else %}
+                    <a href="/login" id="login-page">Login</a>
+                    <a href="/signup" id="login-page">Sign Up</a>
+        {% endif %}
         <div id="nav-bottom">
         </div>
     </nav>
