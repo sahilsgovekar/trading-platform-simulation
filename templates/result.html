@@ -27,8 +27,10 @@
             position: fixed;
             display: flex;
             align-items: center;
+            /* Center items vertically */
             height: 12vh;
             width: 100%;
+            gap: 2vw;
             padding: 2vw 10.4vw;
             justify-content: space-between;
             background-color: #111;
@@ -47,6 +49,7 @@
             display: flex;
             gap: 2vw;
             align-items: center;
+            /* Center items vertically */
             padding: 1vh 0;
             position: relative;
             z-index: 10;
@@ -87,10 +90,11 @@
         }
 
         #nav-bottom {
-            width: 100%;
+            width: 80%;
             height: 1vh;
             position: absolute;
             top: 100%;
+            left: 10%;
             background-color: #111;
             z-index: 9;
             border-bottom: 1px solid #fff;
@@ -105,6 +109,13 @@
             text-decoration: none;
         }
 
+        .nav-elem a {
+            margin-top: 0px !important;
+        }
+
+        #login-page {
+            margin-top: 0px !important;
+        }
 
         #content-container {
             padding: 15vh 10vw;
@@ -147,7 +158,7 @@
             background-color: #4f5bff;
         }
 
-        a {
+        .anker {
             text-decoration: none;
             color: #fff;
             display: inline-block;
@@ -157,7 +168,7 @@
             margin-top: 20px;
         }
 
-        a:hover {
+        .anker:hover {
             background-color: #4f5bff;
         }
     </style>
@@ -185,11 +196,11 @@
             </div>
         </div>
         {% if current_user.is_authenticated %}
-                    <span>Welcome, {{ current_user.username }}!</span>
-                    <a href="/logout" id="login-page">Logout</a>
+        <span>Welcome, {{ current_user.username }}!</span>
+        <a href="/logout" id="login-page">Logout</a>
         {% else %}
-                    <a href="/login" id="login-page">Login</a>
-                    <a href="/signup" id="login-page">Sign Up</a>
+        <a href="/login" id="login-page">Login</a>
+        <a href="/signup" id="login-page">Sign Up</a>
         {% endif %}
         <div id="nav-bottom"></div>
     </nav>
@@ -208,7 +219,7 @@
             <input type="hidden" name="price" value="{{ price }}">
             <label for="quantity">Quantity to Buy:</label>
             <input type="number" id="quantity" name="quantity" min="1" required>
-            <button type="submit">Buy</button>
+            <button type="submit" class="anker">Buy</button>
         </form>
 
         {% if quantity > 0 %}
@@ -222,7 +233,7 @@
         {% endif %}
         <form action="/predict" method="post">
             <input type="hidden" name="symbol" value="{{ symbol }}">
-            <button type="submit">Predict</button>
+            <button type="submit" class="anker">Predict</button>
         </form>
     </div>
 </body>
