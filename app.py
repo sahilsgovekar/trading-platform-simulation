@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify  
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import (
     LoginManager,
@@ -17,7 +17,8 @@ from yahoo_fin import stock_info as si
 import plotly.graph_objs as go
 import plotly.io as pio
 import datetime
-
+import re
+import time
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///trading.db"
@@ -53,24 +54,55 @@ def load_user(user_id):
 # def create_tables():
 #     db.create_all()
 
+def validate_password(password):
+    # Password must be at least 8 characters long and contain at least:
+    # one uppercase letter, one lowercase letter, one number, and one special character
+    if (len(password) < 8 or
+        not re.search(r"[A-Z]", password) or
+        not re.search(r"[a-z]", password) or
+        not re.search(r"\d", password) or
+        not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password)):
+        return False
+    return True
+
 
 @app.route("/")
 def landing_route():
     return render_template("index.html")
-
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+
+        # Basic username validation
+        if len(username) < 4:
+            flash("Username must be at least 4 characters long.", "danger")
+            return redirect(url_for("signup"))
+
+        # Password validation
+        if not validate_password(password):
+            flash("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.", "danger")
+            return redirect(url_for("signup"))
+
+        # Check if username already exists
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash("Username already exists. Please choose a different one.", "danger")
+            return redirect(url_for("signup"))
+
+        # If validations pass, hash the password and create the user
         hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
         user = User(username=username, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash("Account created successfully! Login please", "success")
-        return redirect(url_for("trade"))
+
+        flash("Account created successfully! Please log in.", "success")
+        return redirect(url_for("login"))
+
     return render_template("signup.html")
+
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -81,10 +113,9 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
-            flash("Login successful!", "success")
             return redirect(url_for("trade"))
         else:
-            flash("Login Unsuccessful. Please check username and password", "danger")
+            flash("Please check username and password", "Login Unsuccessful")
     return render_template("login.html")
 
 
